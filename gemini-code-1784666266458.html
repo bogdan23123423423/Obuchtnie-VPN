@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обучающий курс от Компании Sonrea & SecureLineVPN</title>
+    <style>
+        :root {
+            --bg-main: #f2f4f8;
+            --card-solid: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --accent: #0088cc;
+            --accent-gradient: linear-gradient(135deg, #0088cc 0%, #00b2ff 100%);
+            --vip-gradient: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            --gold-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            --accent-hover: #0077b3;
+            --accent-light: #e0f2fe;
+            --success: #10b981;
+            --success-bg: #ecfdf5;
+            --error: #ef4444;
+            --error-bg: #fef2f2;
+            --border: #e2e8f0;
+            --radius-lg: 20px;
+            --radius-md: 12px;
+            --font-stack: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", Roboto, sans-serif;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
+            --shadow-md: 0 12px 28px -4px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-stack);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 320px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-right: 1px solid var(--border);
+            padding: 1.8rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .brand {
+            font-weight: 800;
+            font-size: 1rem;
+            margin-bottom: 1.2rem;
+            padding: 0.9rem 1rem;
+            color: #ffffff;
+            background: var(--accent-gradient);
+            border-radius: var(--radius-md);
+            box-shadow: 0 8px 16px rgba(0, 136, 204, 0.25);
+            line-height: 1.3;
+        }
+
+        .brand span {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 500;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+
+        .nav-link {
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-md);
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-link:hover {
+            background: rgba(0, 136, 204, 0.06);
+            color: var(--accent);
+            transform: translateX(3px);
+        }
+
+        .nav-link.active {
+            background: var(--accent-gradient);
+            color: #ffffff;
+            font-weight: 600;
+            box-shadow: 0 6px 16px rgba(0, 136, 204, 0.3);
+        }
+
+        .nav-link.vip-link {
+            background: rgba(139, 92, 246, 0.1);
+            color: #7c3aed;
+            font-weight: 700;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .nav-link.vip-link:hover {
+            background: var(--vip-gradient);
+            color: #ffffff;
+        }
+
+        /* Соцсети в меню */
+        .social-widget {
+            margin-top: auto;
+            padding-top: 1.2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .social-widget-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            margin-bottom: 0.2rem;
+            padding-left: 0.4rem;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.6rem 0.9rem;
+            border-radius: var(--radius-md);
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .social-btn:hover {
+            background: #ffffff;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .social-btn.tg { color: #0088cc; }
+        .social-btn.max { color: #6366f1; }
+
+        /* Главная область */
+        .main-content {
+            flex: 1;
+            padding: 2.5rem 2.5rem;
+            max-width: 980px;
+        }
+
+        .header {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-title h1 {
+            font-size: 1.9rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.4rem;
+            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-title p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .user-status {
+            background: var(--card-solid);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Карточки */
+        .card {
+            background: var(--card-solid);
+            border-radius: var(--radius-lg);
+            padding: 1.8rem;
+            margin-bottom: 1.6rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.01em;
+        }
+
+        .card p, .card ul {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            line-height: 1.65;
+        }
+
+        .card ul {
+            margin-left: 1.2rem;
+            margin-top: 0.6rem;
+        }
+
+        .card li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Код блоки */
+        .code-box {
+            background: #0f172a;
+            color: #38bdf8;
+            padding: 1rem 1.2rem;
+            border-radius: var(--radius-md);
+            font-family: "SF Mono", Monaco, Consolas, monospace;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .copy-btn, .btn {
+            background: var(--accent-gradient);
+            border: none;
+            color: #ffffff;
+            padding: 0.65rem 1.4rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.88rem;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 136, 204, 0.25);
+        }
+
+        .speech-btn {
+            background: #f1f5f9;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.2s ease;
+        }
+
+        .speech-btn:hover {
+            background: var(--accent-light);
+            color: var(--accent);
+            border-color: rgba(0, 136, 204, 0.3);
+        }
+
+        .speech-btn.speaking {
+            background: var(--accent-gradient);
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 4px 12px rgba(0, 136, 204, 0.25);
+        }
+
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.4rem 0.85rem;
+            font-size: 0.8rem;
+            border-radius: 12px;
+            box-shadow: none;
+        }
+
+        .btn-vip {
+            background: var(--vip-gradient);
+            box-shadow: 0 4px 16px rgba(139, 92, 246, 0.35);
+        }
+
+        .btn-vip:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
+        }
+
+        .btn-donate {
+            background: linear-gradient(135deg, #ff2d55 0%, #ff5e7e 100%);
+            box-shadow: 0 4px 12px rgba(255, 45, 85, 0.3);
+        }
+
+        /* Сетка функций подписки */
+        .vip-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.2rem;
+        }
+
+        .vip-feature-card {
+            border: 1px solid var(--border);
+            background: #ffffff;
+            border-radius: var(--radius-md);
+            padding: 1.2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.25s ease;
+        }
+
+        .vip-feature-card:hover {
+            border-color: #8b5cf6;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.12);
+        }
+
+        .vip-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(139, 92, 246, 0.1);
+            color: #7c3aed;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+        }
+
+        .vip-feature-card h4 {
+            font-size: 1.05rem;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .vip-feature-card p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Сетка провайдеров */
+        .provider-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .provider-card {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.4rem;
+            background: #f8fafc;
+            transition: all 0.2s;
+        }
+
+        .provider-card.priority {
+            border-color: rgba(0, 136, 204, 0.4);
+            background: var(--accent-light);
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #ffffff;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.25rem 0.65rem;
+            border-radius: 20px;
+            margin-bottom: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Видео */
+        .video-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .video-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.1rem 1.3rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            color: var(--text-main);
+            background: var(--card-solid);
+            transition: all 0.25s ease;
+        }
+
+        .video-item:hover {
+            border-color: var(--accent);
+            transform: translateX(5px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Тесты */
+        .quiz-option {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 0.85rem 1.1rem;
+            margin-top: 0.6rem;
+            cursor: pointer;
+            font-size: 0.95rem;
+            background: var(--card-solid);
+            transition: all 0.2s ease;
+        }
+
+        .quiz-option:hover {
+            background: rgba(0, 136, 204, 0.05);
+            border-color: var(--accent);
+        }
+
+        .quiz-option.correct {
+            background: var(--success-bg);
+            border-color: var(--success);
+            color: #065f46;
+            font-weight: 600;
+        }
+
+        .quiz-option.incorrect {
+            background: var(--error-bg);
+            border-color: var(--error);
+        }
+
+        .result-message {
+            margin-top: 0.6rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Инпуты */
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.85rem 1.1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            outline: none;
+            background: #f8fafc;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(0, 136, 204, 0.15);
+            background: #ffffff;
+        }
+
+        .support-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--accent-light);
+            border: 1px solid rgba(0, 136, 204, 0.2);
+            padding: 1.4rem;
+            border-radius: var(--radius-md);
+        }
+
+        @media (max-width: 850px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid var(--border); }
+            .provider-grid { grid-template-columns: 1fr; }
+            .support-box { flex-direction: column; gap: 1rem; align-items: flex-start; }
+            .main-content { padding: 1.5rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="brand">
+            Обучающий курс
+            <span>Sonrea & SecureLineVPN</span>
+        </div>
+        <a class="nav-link active" onclick="showSection('vps-info')">💻 1. Что такое VPS (Теория)</a>
+        <a class="nav-link" onclick="showSection('providers')">🌐 2. Провайдеры (JustHost, HOOSTOFF)</a>
+        <a class="nav-link" onclick="showSection('setup')">⚙️ 3. Настройка и Безопасность</a>
+        <a class="nav-link" onclick="showSection('videos')">🎬 4. Видео от партнеров</a>
+        <a class="nav-link" onclick="showSection('quiz')">🧠 5. Проверка знаний</a>
+        <a class="nav-link" onclick="showSection('support')">💬 6. Тех.поддержка</a>
+        <a class="nav-link" onclick="showSection('donate')">❤️ 7. Поддержать Sonrea</a>
+        <a class="nav-link" onclick="showSection('auth')">📱 8. Вход / Регистрация</a>
+        
+        <a class="nav-link vip-link" onclick="showSection('subscription')">🌟 9. SonreaMoreIntelligent</a>
+
+        <div class="social-widget">
+            <div class="social-widget-title">Наши соцсети</div>
+            <a href="https://t.me/securelinevpnbk" target="_blank" class="social-btn tg">
+                <span>✈️ Telegram</span>
+                <span>↗</span>
+            </a>
+            <a href="https://max.ru/join/9TC5Qe5y9cyRrrmx80Gw6_mDV88Rcn-v4HiGyI8PCis" target="_blank" class="social-btn max">
+                <span>💬 Max Сообщество</span>
+                <span>↗</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+
+        <div class="header">
+            <div class="header-title">
+                <h1 id="page-title">Что такое VPS и как он работает?</h1>
+                <p id="page-desc">Подробный разбор архитектуры виртуальных серверов по стандартам Sonrea.</p>
+            </div>
+            <div class="user-status" id="user-status">
+                <span>👤 Не авторизован</span>
+                <button class="btn" style="padding: 0.35rem 0.9rem; font-size: 0.78rem;" onclick="showSection('auth')">Войти</button>
+            </div>
+        </div>
+
+        <section id="vps-info" class="content-section">
+            <div class="card">
+                <div class="card-header-flex">
+                    <h3>Подробный разбор: VPS и VDS</h3>
+                    <button class="speech-btn" onclick="toggleSpeech(this, 'card-text-1')">🔊 Прочесть вслух</button>
+                </div>
+                <div id="card-text-1">
+                    <p><b>VPS (Virtual Private Server)</b> или <b>VDS (Virtual Dedicated Server)</b> — это виртуальная машина, создаваемая внутри мощного физического сервера. С точки зрения операционной системы и пользователя, VPS ничем не отличается от физического компьютера в дата-центре.</p>
+                    <br>
+                    <p><b>Как это устроено архитектурно?</b></p>
+                    <ul>
+                        <li><b>Гипервизор (KVM, Proxmox, VMware):</b> Специальное ПО, которое разделяет ресурсы реального «железа» (процессор, оперативную память, диски) на изолированные виртуальные контейнеры.</li>
+                        <li><b>Полная изоляция:</b> Соседи по физическому серверу не могут получить доступ к вашим данным, памяти или файловой системе.</li>
+                        <li><b>Гарантированные ресурсы:</b> При аппаратной виртуализации KVM выделенный объем оперативной памяти и ядер процессора закрепится строго за вашим сервером.</li>
+                        <li><b>Права Root (Суперпользователь):</b> Вы получаете абсолютный контроль над ОС и можете устанавливать любые сетевые утилиты, VPN-панели и базы данных.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header-flex">
+                    <h3>Сравнение: VPS vs Обычный хостинг</h3>
+                    <button class="speech-btn" onclick="toggleSpeech(this, 'card-text-2')">🔊 Прочесть вслух</button>
+                </div>
+                <div id="card-text-2">
+                    <p>На <b>обычном виртуальном хостинге</b> сотни сайтов делят общие ресурсы и память. Если один сайт начинает перегружать сервер, страдают все остальное. На <b>VPS</b> у вас собственная операционная система, изолированный сетевой стек и персональный статический IP-адрес, что критически важно для работы стабильного VPN.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header-flex">
+                    <h3>Вопрос 1 из 8: В чем ключевое преимущество KVM-виртуализации?</h3>
+                    <button class="speech-btn" onclick="toggleSpeech(this, 'card-q1')">🔊 Прочесть вопрос</button>
+                </div>
+                <div id="card-q1">
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'q1')">Ресурсы сервера делятся динамически и могут забираться другими пользователями</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true, 'q1')">Полная аппаратная изоляция и строго гарантированные ресурсы (RAM, CPU)</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'q1')">На KVM нельзя установить операционную систему Linux</div>
+                </div>
+                <div id="q1-result" class="result-message"></div>
+            </div>
+
+            <div class="card">
+                <div class="card-header-flex">
+                    <h3>Вопрос 2 из 8: Зачем нужен Root-доступ при создании своего VPN?</h3>
+                    <button class="speech-btn" onclick="toggleSpeech(this, 'card-q2')">🔊 Прочесть вопрос</button>
+                </div>
+                <div id="card-q2">
+                    <div class="quiz-option" onclick="checkAnswer(this, true, 'q2')">Чтобы устанавливать системные пакеты, изменять ядро, правила файрвола и VPN-клиенты</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'q2')">Root-доступ нужен только для смены пароля от Wi-Fi</div>
+                </div>
+                <div id="q2-result" class="result-message"></div>
+            </div>
+        </section>
+
+        <section id="providers" class="content-section" style="display: none;">
+            <div class="card">
+                <div class="card-header-flex">
+                    <h3>Как правильно выбирать VPS-провайдера?</h3>
+                    <button class="speech-btn" onclick="toggleSpeech(this, 'card-text-prov')">🔊 Прочесть вслух</button>
+                </div>
+                <div id="card-text-prov">
+                    <p>При выборе хостинга для VPN и прокси следует обращать внимание на 4 ключевых параметра:</p>
+                    <ul>
+                        <li><b>Тип накопителя:</b> Только NVMe или SSD. Обычные HDD слишком медленные.</li>
+                        <li><b>Локация и Пинг:</b> Чем ближе дата-центр физически, тем ниже задержка сигнала.</li>
+                        <li><b>Ширина канала:</b> Для 4K-видео требуется канал от 100 Мбит/с до 1 Гбит/с.</li>
+                        <li><b>Защита и смена IP:</b> Возможность быстро сменить IP-адрес при блокировках.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Приоритетные хостинг-провайдеры</h3>
+                <div class="provider-grid">
+                    <div class="provider-card priority">
+                        <span class="badge">Выбор экспертов</span>
+                        <h4>JustHost</h4>
+                        <p style="font-size: 0.88rem; margin-top: 0.5rem; color: var(--text-muted);">
+                            Один из лучших провайдеров по соотношению цена/качество. Поддерживает выбор из десятков дата-центров (Европа, Азия, США), дает возможность менять IP прямо из личного кабинета, а также предлагает тарифы с гибкой оплатой и нелимитированным трафиком.
+                        </p>
+                    </div>
+                    <div class="provider-card priority">
+                        <span class="badge">Макс. Скорость</span>
+                        <h4>HOOSTOFF</h4>
+                        <p style="font-size: 0.88rem; margin-top: 0.5rem; color: var(--text-muted);">
+                            Высокопроизводительный хостинг с упором на надежность и широкие каналы связи. Отлично подходит под протоколы VLESS / Shadowsocks / Xray. Гарантирует низкую задержку и высокий Uptime.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Вопрос 3 из 8: Почему для VPN критичен тип диска NVMe/SSD, а не HDD?</h3>
+                <div class="quiz-option" onclick="checkAnswer(this, true, 'q3')">NVMe обеспечивает в десятки раз более высокую скорость чтения/записи и обработки соединений</div>
+                <div class="quiz-option" onclick="checkAnswer(this, false, 'q3')">HDD диски вообще не умеют передавать интернет-трафик</div>
+                <div id="q3-result" class="result-message"></div>
+            </div>
+
+            <div class="card">
+                <h3>Вопрос 4 из 8: Какое преимущество дает провайдер JustHost?</h3>
+                <div class="quiz-option" onclick="checkAnswer(this, false, 'q4')">Бесплатная раздача физических серверов</div>
+                <div class="quiz-option" onclick="checkAnswer(this, true, 'q4')">Большой выбор мировых локаций и возможность смены IP-адреса</div>
+                <div id="q4-result" class="result-message"></div>
+            </div>
+        </section>
+
+        <section id="setup" class="content-section" style="display: none;">
+            <div class="card">
+                <div class="card-header-flex">
+                    <h3>Первоначальная настройка и защита VPS</h3>
+                    <button class="speech-btn" onclick="toggleSpeech(this, 'card-text-setup')">🔊 Прочесть вслух</button>
+                </div>
+                <div id="card-text-setup">
+                    <p>Сразу после покупки сервера вы получите IP-адрес и пароль root. Перед развертыванием VPN обязательно выполните базовую подготовку Linux:</p>
+                    <br>
+                    <p><b>1. Обновление индекса пакетов и компонентов системы:</b></p>
+                </div>
+                <div class="code-box">
+                    <span>sudo apt update && sudo apt upgrade -y</span>
+                    <button class="copy-btn" onclick="copyText('sudo apt update && sudo apt upgrade -y')">Копировать</button>
+                </div>
+
+                <p style="margin-top: 1rem;"><b>2. Базовая настройка межсетевого экрана (UFW):</b></p>
+                <div class="code-box">
+                    <span>sudo ufw allow 22/tcp && sudo ufw enable</span>
+                    <button class="copy-btn" onclick="copyText('sudo ufw allow 22/tcp && sudo ufw enable')">Копировать</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Вопрос 5 из 8: Что делает команда `sudo apt update && sudo apt upgrade -y`?</h3>
+                <div class="quiz-option" onclick="checkAnswer(this, true, 'q5')">Обновляет списки пакетов и автоматически скачивает свежие обновления безопасности</div>
+                <div class="quiz-option" onclick="checkAnswer(this, false, 'q5')">Удаляет операционную систему с сервера</div>
+                <div id="q5-result" class="result-message"></div>
+            </div>
+
+            <div class="card">
+                <h3>Вопрос 6 из 8: Какой порт по умолчанию используется для безопасного подключения по SSH?</h3>
+                <div class="quiz-option" onclick="checkAnswer(this, false, 'q6')">Порт 80</div>
+                <div class="quiz-option" onclick="checkAnswer(this, true, 'q6')">Порт 22</div>
+                <div class="quiz-option" onclick="checkAnswer(this, false, 'q6')">Порт 443</div>
+                <div id="q6-result" class="result-message"></div>
+            </div>
+        </section>
+
+        <section id="videos" class="content-section" style="display: none;">
+            <div class="card">
+                <p style="margin-bottom: 1rem;">Все представленные ниже обучающие видеоролики подготовлены нашими официальными партнерами:</p>
+                <div class="video-list">
+                    <a href="https://youtu.be/CotlyGI4dZE?si=B1Ck5vpgTT7LG-yF" target="_blank" class="video-item">
+                        <span><b>1. WAICORE:</b> Свой VDS сервер на стабильном хостинге в несколько кликов</span>
+                        <span style="color: var(--accent); font-weight: 600;">Смотреть ↗</span>
+                    </a>
+                    <a href="https://youtu.be/KO_78PNljhs?si=e5THBX01Au80LL-P" target="_blank" class="video-item">
+                        <span><b>2. VPS за 5 минут:</b> Как запустить свой виртуальный сервер</span>
+                        <span style="color: var(--accent); font-weight: 600;">Смотреть ↗</span>
+                    </a>
+                    <a href="https://youtu.be/PAP-_2DvekM?si=NXINoTgIctQPQ-KY" target="_blank" class="video-item">
+                        <span><b>3. FirstVDS:</b> Как купить и правильно настроить VPS хостинг</span>
+                        <span style="color: var(--accent); font-weight: 600;">Смотреть ↗</span>
+                    </a>
+                    <a href="https://youtu.be/Ep9X3m6Oj78?si=O5PLhXUp7Bwlztn0" target="_blank" class="video-item">
+                        <span><b>4. 3X-UI + Xray:</b> Свой VPN за 20 минут (Каскадный метод)</span>
+                        <span style="color: var(--accent); font-weight: 600;">Смотреть ↗</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz" class="content-section" style="display: none;">
+            <div class="card">
+                <h3>Вопрос 7 из 8: Что такое 3X-UI?</h3>
+                <div class="quiz-option" onclick="checkAnswer(this, true, 'q7')">Удобная веб-панель управления клиентами и протоколами Xray / VLESS</div>
+                <div class="quiz-option" onclick="checkAnswer(this, false, 'q7')">Программа для редактирования видеофайлов на сервере</div>
+                <div id="q7-result" class="result-message"></div>
+            </div>
+
+            <div class="card">
+                <h3>Вопрос 8 из 8: Какая ОС чаще всего используется для подъема VPN на сервере из-за ее стабильности?</h3>
+                <div class="quiz-option" onclick="checkAnswer(this, false, 'q8')">Windows XP</div>
+                <div class="quiz-option" onclick="checkAnswer(this, true, 'q8')">Ubuntu / Debian Linux</div>
+                <div id="q8-result" class="result-message"></div>
+            </div>
+        </section>
+
+        <section id="support" class="content-section" style="display: none;">
+            <div class="card">
+                <h3>Служба поддержки Sonrea & SecureLineVPN</h3>
+                <p style="margin-bottom: 1.2rem;">По любым вопросам обучения, настройки или сотрудничества вы можете связаться с нами напрямую через E-mail или официальные социальные сети:</p>
+                <div class="support-box">
+                    <div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);">Официальный E-mail:</div>
+                        <div style="font-weight: 700; font-family: monospace; font-size: 1.05rem; color: var(--text-main);">sonreaaivpn@gmail.com</div>
+                    </div>
+                    <button class="btn" onclick="copyText('sonreaaivpn@gmail.com')">Копировать Email</button>
+                </div>
+
+                <div style="margin-top: 1.5rem;">
+                    <p style="margin-bottom: 0.8rem; font-weight: 600;">Наши соцсети и каналы связи:</p>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="https://t.me/securelinevpnbk" target="_blank" class="btn" style="background: #0088cc;">Telegram Канал ↗</a>
+                        <a href="https://max.ru/join/9TC5Qe5y9cyRrrmx80Gw6_mDV88Rcn-v4HiGyI8PCis" target="_blank" class="btn" style="background: #4f46e5;">Сообщество Max ↗</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="donate" class="content-section" style="display: none;">
+            <div class="card">
+                <h3>Поддержать развитие проектов Sonrea</h3>
+                <p style="margin-bottom: 1.5rem;">Мы разрабатываем образовательные курсы и VPN-решения. Каждое пожертвование помогает нам оплачивать серверы и развивать новые функции.</p>
+                <a href="https://www.donationalerts.com/r/karaa_xx" target="_blank" class="btn btn-donate">Сделать пожертвование на DonationAlerts ↗</a>
+            </div>
+        </section>
+
+        <section id="auth" class="content-section" style="display: none;">
+            <div class="card" id="auth-card">
+                <h3>Регистрация / Вход по номеру телефона</h3>
+                <p style="margin-bottom: 1.5rem;">Введите ваш номер телефона для сохранения прогресса обучения.</p>
+                
+                <div id="step-phone">
+                    <div class="form-group">
+                        <label for="phone-input">Номер телефона</label>
+                        <input type="tel" id="phone-input" class="form-control" placeholder="+7 (999) 000-00-00">
+                    </div>
+                    <button class="btn" onclick="sendCode()">Отправить код по SMS</button>
+                </div>
+
+                <div id="step-code" style="display: none;">
+                    <div class="form-group">
+                        <label for="code-input">Код из SMS</label>
+                        <input type="text" id="code-input" class="form-control" placeholder="1234" maxlength="4">
+                    </div>
+                    <button class="btn" onclick="verifyCode()">Подтвердить и войти</button>
+                    <button class="btn" style="background: transparent; color: var(--text-muted); box-shadow: none;" onclick="resetAuthStep()">Изменить номер</button>
+                </div>
+            </div>
+
+            <div class="card" id="user-profile-card" style="display: none;">
+                <h3>Личный кабинет</h3>
+                <p id="user-phone-display" style="margin-bottom: 1.2rem; font-weight: 500;"></p>
+                <button class="btn" style="background: var(--error); box-shadow: none;" onclick="logout()">Выйти из профиля</button>
+            </div>
+        </section>
+
+        <section id="subscription" class="content-section" style="display: none;">
+            <div class="card" style="border: 2px solid #8b5cf6; background: linear-gradient(180deg, #ffffff 0%, #fdf4ff 100%);">
+                <div class="card-header-flex">
+                    <h3 style="color: #6b21a8; font-size: 1.4rem;">🌟 Премиум SonreaMoreIntelligent</h3>
+                    <span class="vip-badge" style="background: #8b5cf6; color: #fff; font-size: 0.8rem;">PLUS</span>
+                </div>
+                <p>Простой и доступный набор супер-способностей для комфортного обучения и работы с вашим VPN-сервером.</p>
+                
+                <div style="margin-top: 1.2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <span style="font-size: 1.6rem; font-weight: 800; color: #6b21a8;">35 ₽</span>
+                        <span style="color: var(--text-muted); font-size: 0.9rem;"> / месяц</span>
+                    </div>
+                    <button class="btn btn-vip" onclick="activateSubscription()">Подключить за 35 ₽ ⚡</button>
+                </div>
+            </div>
+
+            <h3 style="margin-bottom: 1rem; font-size: 1.2rem;">Что вы получите:</h3>
+
+            <div class="vip-features-grid">
+                <div class="vip-feature-card">
+                    <span class="vip-badge">Удобство</span>
+                    <h4>⚡ Шпаргалка команд</h4>
+                    <p>Все важные команды для Linux и VPN в одном месте. Копируйте в 1 клик без поиска по конспектам.</p>
+                </div>
+                <div class="vip-feature-card">
+                    <span class="vip-badge">Помощь</span>
+                    <h4>💬 Приоритет в поддержке</h4>
+                    <p>Ваши вопросы по настройке сервера или ошибкам рассматриваются экспертами в первую очередь.</p>
+                </div>
+                <div class="vip-feature-card">
+                    <span class="vip-badge">Стиль</span>
+                    <h4>🎨 Темы оформления</h4>
+                    <p>Доступ к стильным тёмным и неоновым темам интерфейса для более приятного обучения вечерком.</p>
+                </div>
+                <div class="vip-feature-card">
+                    <span class="vip-badge">Бонус</span>
+                    <h4>🎓 Именной сертификат</h4>
+                    <p>Получите памятный цифровой сертификат Sonrea после успешного прохождения всех итоговых тестов.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const titles = {
+            'vps-info': { title: 'Что такое VPS и как он работает?', desc: 'Подробный разбор архитектуры виртуальных серверов по стандартам Sonrea.' },
+            'providers': { title: 'Выбор хостинг-провайдера', desc: 'Сравнение и разбор JustHost и HOOSTOFF.' },
+            'setup': { title: 'Настройка и безопасность', desc: 'Команды Linux для начальной подготовки VPS.' },
+            'videos': { title: 'Обучающие видео от партнеров', desc: 'Наглядные уроки по развертыванию серверов и VPN.' },
+            'quiz': { title: 'Итоговая проверка знаний', desc: 'Тестовые задания по всем пройденным материалам.' },
+            'support': { title: 'Техническая поддержка', desc: 'Обратная связь с командой Sonrea & SecureLineVPN.' },
+            'donate': { title: 'Поддержать Sonrea', desc: 'Помощь в развитии свободных обучающих проектов.' },
+            'auth': { title: 'Авторизация в системе', desc: 'Вход и регистрация по мобильному номеру.' },
+            'subscription': { title: 'Подписка SonreaMoreIntelligent', desc: 'Полезные премиум-фичи и бонусы всего за 35 рублей в месяц.' }
+        };
+
+        // Переключение разделов
+        function showSection(id) {
+            stopSpeech(); // Останавливать чтение при переходе
+            document.querySelectorAll('.content-section').forEach(sec => sec.style.display = 'none');
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            
+            document.getElementById(id).style.display = 'block';
+            
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                if(link.getAttribute('onclick') && link.getAttribute('onclick').includes(id)) {
+                    link.classList.add('active');
+                }
+            });
+
+            if(titles[id]) {
+                document.getElementById('page-title').innerText = titles[id].title;
+                document.getElementById('page-desc').innerText = titles[id].desc;
+            }
+        }
+
+        // Активация подписки
+        function activateSubscription() {
+            alert('Спасибо за интерес к SonreaMoreIntelligent! Перенаправляем на страницу оплаты...');
+            window.open('https://www.donationalerts.com/r/karaa_xx', '_blank');
+        }
+
+        // --- ФУНКЦИЯ ОЗВУЧИВАНИЯ ТЕКСТА (Text-to-Speech) ---
+        let currentBtn = null;
+
+        function toggleSpeech(btnElement, containerId) {
+            if ('speechSynthesis' in window) {
+                if (window.speechSynthesis.speaking) {
+                    window.speechSynthesis.cancel();
+                    if (currentBtn === btnElement) {
+                        resetSpeechButtons();
+                        return;
+                    }
+                }
+
+                resetSpeechButtons();
+
+                const container = document.getElementById(containerId);
+                if (!container) return;
+
+                const textToRead = container.innerText || container.textContent;
+                const utterance = new SpeechSynthesisUtterance(textToRead);
+                utterance.lang = 'ru-RU';
+                utterance.rate = 1.0;
+
+                utterance.onstart = function() {
+                    btnElement.classList.add('speaking');
+                    btnElement.innerHTML = '⏸ Остановить';
+                    currentBtn = btnElement;
+                };
+
+                utterance.onend = function() {
+                    resetSpeechButtons();
+                };
+
+                utterance.onerror = function() {
+                    resetSpeechButtons();
+                };
+
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('К сожалению, ваш браузер не поддерживает озвучивание текста.');
+            }
+        }
+
+        function stopSpeech() {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+            }
+            resetSpeechButtons();
+        }
+
+        function resetSpeechButtons() {
+            document.querySelectorAll('.speech-btn').forEach(btn => {
+                btn.classList.remove('speaking');
+                btn.innerHTML = '🔊 Прочесть вслух';
+            });
+            currentBtn = null;
+        }
+
+        // Проверка ответов в тестах
+        function checkAnswer(element, isCorrect, resultId) {
+            const parent = element.parentElement;
+            const options = parent.querySelectorAll('.quiz-option');
+            const resultDiv = document.getElementById(resultId + '-result');
+
+            options.forEach(opt => {
+                opt.classList.remove('correct', 'incorrect');
+            });
+
+            if (isCorrect) {
+                element.classList.add('correct');
+                resultDiv.style.color = 'var(--success)';
+                resultDiv.innerText = '✓ Совершенно верно!';
+            } else {
+                element.classList.add('incorrect');
+                resultDiv.style.color = 'var(--error)';
+                resultDiv.innerText = '✗ Неверно. Попробуйте другой вариант.';
+            }
+        }
+
+        function copyText(text) {
+            navigator.clipboard.writeText(text);
+            alert('Скопировано в буфер обмена: ' + text);
+        }
+
+        function sendCode() {
+            const phone = document.getElementById('phone-input').value.trim();
+            if(!phone) {
+                alert('Пожалуйста, введите номер телефона');
+                return;
+            }
+            document.getElementById('step-phone').style.display = 'none';
+            document.getElementById('step-code').style.display = 'block';
+        }
+
+        function resetAuthStep() {
+            document.getElementById('step-phone').style.display = 'block';
+            document.getElementById('step-code').style.display = 'none';
+        }
+
+        function verifyCode() {
+            const code = document.getElementById('code-input').value.trim();
+            const phone = document.getElementById('phone-input').value.trim();
+            if(!code) {
+                alert('Введите код из SMS');
+                return;
+            }
+            localStorage.setItem('user_phone', phone);
+            updateUserStatus();
+            alert('Вы успешно вошли!');
+        }
+
+        function logout() {
+            localStorage.removeItem('user_phone');
+            updateUserStatus();
+        }
+
+        function updateUserStatus() {
+            const phone = localStorage.getItem('user_phone');
+            const statusDiv = document.getElementById('user-status');
+            const authCard = document.getElementById('auth-card');
+            const profileCard = document.getElementById('user-profile-card');
+            const phoneDisplay = document.getElementById('user-phone-display');
+
+            if (phone) {
+                statusDiv.innerHTML = `<span>👤 ${phone}</span>`;
+                if(authCard) authCard.style.display = 'none';
+                if(profileCard) {
+                    profileCard.style.display = 'block';
+                    phoneDisplay.innerText = 'Вы вошли как: ' + phone;
+                }
+            } else {
+                statusDiv.innerHTML = `<span>👤 Не авторизован</span> <button class="btn" style="padding: 0.35rem 0.9rem; font-size: 0.78rem;" onclick="showSection('auth')">Войти</button>`;
+                if(authCard) {
+                    authCard.style.display = 'block';
+                    resetAuthStep();
+                }
+                if(profileCard) profileCard.style.display = 'none';
+            }
+        }
+
+        updateUserStatus();
+    </script>
+</body>
+</html>
